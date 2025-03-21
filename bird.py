@@ -11,7 +11,10 @@ class Bird(pygame.sprite.Sprite):
         #Todo sprite no pygame tem que ter uma imagem e rect, além de sobrescrever o método update
         self.image = pygame.image.load(config.BIRD_MID_IMAGE).convert_alpha() #isso é proa qnd tiver a transparencia (partes png)
         self.rect = self.image.get_rect() #diz onde está, tamanho e 
-        print(self.rect)
+        
+        #Colocando o passaro na metade da tela
+        self.rect[0] = config.SCREEN_WIDTH/2
+        self.rect[1] = config.SCREEN_HEIGHT/2
 
     #Criando metodo de update placeholder
     def update(self):
