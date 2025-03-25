@@ -67,8 +67,8 @@ while True:
     pipe_group.update()
 
     bird_group.draw(screen) #Desenha todos os elementos do grupo na tela
-    ground_group.draw(screen)
     pipe_group.draw(screen)
+    ground_group.draw(screen)
 
     #Se os grupos colidirem com os pixeis não transparentes colidirem
     if (pygame.sprite.groupcollide(bird_group, ground_group, False, False, pygame.sprite.collide_mask) or
