@@ -14,7 +14,8 @@ class Bird(pygame.sprite.Sprite):
             pygame.image.load(config.BIRD_DOWN_IMAGE).convert_alpha(),
         ]
 
-        self.current_image = 1
+        self.current_image = 0
+        self.speed = config.SPEED
 
 
         #Todo sprite no pygame tem que ter uma imagem e rect, além de sobrescrever o método update
@@ -32,4 +33,13 @@ class Bird(pygame.sprite.Sprite):
         # Atualiza a imagem para a próxima na lista, ciclando entre 0, 1, e 2
         self.current_image = (self.current_image + 1) % len(self.images)  # Garantir que o índice seja 0, 1 ou 2
         self.image = self.images[self.current_image]
+
+        self.speed += config.GRAVITY
+
+        #update height
+        self.rect[1] += self.speed
+
+    def bump(self):
+        self.speed -= config.SPEED
+
 

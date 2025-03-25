@@ -2,6 +2,8 @@ import os
 
 SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 800
+SPEED = 10
+GRAVITY = 1 
 
 #Pegando onde está as imagens
 BASE_DIR = os.path.dirname(__file__)  # Diretório do script atual

@@ -3,7 +3,6 @@ from pygame.locals import *
 import config
 import bird
 
-
 pygame.init()
 screen = pygame.display.set_mode((config.SCREEN_WIDTH, config.SCREEN_HEIGHT))
 
@@ -24,6 +23,10 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             exit()
+
+        if event.type == KEYDOWN:
+            if(event.key == K_SPACE):
+                bird_instance.bump()
 
         #Colocando o background, ele começa no canto superior esquerto da
     screen.blit(BACKGROUND, (0, 0))
