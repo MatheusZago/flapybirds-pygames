@@ -71,7 +71,8 @@ while True:
     pipe_group.draw(screen)
 
     #Se os grupos colidirem com os pixeis não transparentes colidirem
-    if pygame.sprite.groupcollide(bird_group, ground_group, False, False, pygame.sprite.collide_mask):
+    if (pygame.sprite.groupcollide(bird_group, ground_group, False, False, pygame.sprite.collide_mask) or
+        pygame.sprite.groupcollide(bird_group, pipe_group, False, False, pygame.sprite.collide_mask)):
         #Game Ovr
         break
 
