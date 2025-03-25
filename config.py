@@ -5,6 +5,8 @@ SCREEN_HEIGHT = 800
 SPEED = 10
 GRAVITY = 1 
 GAME_SPEED = 10
+GROUND_WIDTH = 2 * SCREEN_WIDTH
+GROUND_HEIGHT = 100
 
 #Pegando onde está as imagens
 BASE_DIR = os.path.dirname(__file__)  # Diretório do script atual

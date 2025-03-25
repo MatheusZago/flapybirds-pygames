@@ -3,6 +3,8 @@ from pygame.locals import *
 import Config
 import Bird
 from Ground import Ground
+from utils.offscreen import is_off_screen
+
 
 pygame.init()
 screen = pygame.display.set_mode((Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT))
@@ -15,8 +17,9 @@ bird_instance = Bird.Bird()
 bird_group.add(bird_instance)
 
 ground_group = pygame.sprite.Group()
-ground_instance = Ground(2 * Config.SCREEN_WIDTH, 100)
-ground_group.add(ground_instance)
+for i in range(2):
+    ground_instance = Ground(Config.GROUND_WIDTH * i)
+    ground_group.add(ground_instance)
 
 clock = pygame.time.Clock()
 
@@ -35,6 +38,13 @@ while True:
         #Colocando o background, ele começa no canto superior esquerto da
     screen.blit(BACKGROUND, (0, 0))
 
+    if is_off_screen(ground_group.sprites()[0]):
+        ground_group.remove(ground_group.sprites()[0])
+
+        new_ground = Ground(Config.GROUND_WIDTH - 20)
+        ground_group.add(new_ground)
+
+
     bird_group.update()
     ground_group.update()
 
@@ -43,3 +53,4 @@ while True:
 
     #Depois de cada laço ele atualiza pra mudar oq precisa ser mudado
     pygame.display.update()
+
