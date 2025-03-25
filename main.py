@@ -1,18 +1,22 @@
 import pygame
 from pygame.locals import *
-import config
-import bird
+import Config
+import Bird
+from Ground import Ground
 
 pygame.init()
-screen = pygame.display.set_mode((config.SCREEN_WIDTH, config.SCREEN_HEIGHT))
+screen = pygame.display.set_mode((Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT))
 
-
-BACKGROUND = pygame.image.load(config.BACKGROUND_IMAGE_PATH)
-BACKGROUND = pygame.transform.scale(BACKGROUND, (config.SCREEN_WIDTH, config.SCREEN_HEIGHT))
+BACKGROUND = pygame.image.load(Config.BACKGROUND_IMAGE_PATH)
+BACKGROUND = pygame.transform.scale(BACKGROUND, (Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT))
 
 bird_group = pygame.sprite.Group()
-bird_instance = bird.Bird()
+bird_instance = Bird.Bird()
 bird_group.add(bird_instance)
+
+ground_group = pygame.sprite.Group()
+ground_instance = Ground(2 * Config.SCREEN_WIDTH, 100)
+ground_group.add(ground_instance)
 
 clock = pygame.time.Clock()
 
@@ -32,7 +36,10 @@ while True:
     screen.blit(BACKGROUND, (0, 0))
 
     bird_group.update()
+    ground_group.update()
+
     bird_group.draw(screen) #Desenha todos os elementos do grupo na tela
+    ground_group.draw(screen)
 
     #Depois de cada laço ele atualiza pra mudar oq precisa ser mudado
     pygame.display.update()

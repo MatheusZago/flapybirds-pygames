@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-import config
+import Config
 
 class Bird(pygame.sprite.Sprite):
 
@@ -9,22 +9,22 @@ class Bird(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.images = [
-            pygame.image.load(config.BIRD_UP_IMAGE).convert_alpha(),
-            pygame.image.load(config.BIRD_MID_IMAGE).convert_alpha(),
-            pygame.image.load(config.BIRD_DOWN_IMAGE).convert_alpha(),
+            pygame.image.load(Config.BIRD_UP_IMAGE).convert_alpha(),
+            pygame.image.load(Config.BIRD_MID_IMAGE).convert_alpha(),
+            pygame.image.load(Config.BIRD_DOWN_IMAGE).convert_alpha(),
         ]
 
         self.current_image = 0
-        self.speed = config.SPEED
+        self.speed = Config.SPEED
 
 
         #Todo sprite no pygame tem que ter uma imagem e rect, além de sobrescrever o método update
-        self.image = pygame.image.load(config.BIRD_UP_IMAGE).convert_alpha() #isso é proa qnd tiver a transparencia (partes png)
+        self.image = pygame.image.load(Config.BIRD_UP_IMAGE).convert_alpha() #isso é proa qnd tiver a transparencia (partes png)
         self.rect = self.image.get_rect() #diz onde está, tamanho e 
         
         #Colocando o passaro na metade da tela
-        self.rect.x = config.SCREEN_WIDTH/2
-        self.rect.y = config.SCREEN_HEIGHT/2
+        self.rect.x = Config.SCREEN_WIDTH/2
+        self.rect.y = Config.SCREEN_HEIGHT/2
 
         
 
@@ -34,12 +34,12 @@ class Bird(pygame.sprite.Sprite):
         self.current_image = (self.current_image + 1) % len(self.images)  # Garantir que o índice seja 0, 1 ou 2
         self.image = self.images[self.current_image]
 
-        self.speed += config.GRAVITY
+        self.speed += Config.GRAVITY
 
         #update height
         self.rect[1] += self.speed
 
     def bump(self):
-        self.speed -= config.SPEED
+        self.speed -= Config.SPEED
 
 
