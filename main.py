@@ -52,6 +52,15 @@ while True:
         new_ground = Ground(Config.GROUND_WIDTH - 20)
         ground_group.add(new_ground)
 
+    if is_off_screen(pipe_group.sprites()[0]):
+        pipe_group.remove(pipe_group.sprites()[0])
+        pipe_group.remove(pipe_group.sprites()[0]) #Esse é o invertido, ele passa a ser o 0 dps de remover o origial
+
+        pipes = get_random_pipes(Config.SCREEN_WIDTH * 2)
+
+        pipe_group.add(pipes[0])
+        pipe_group.add(pipes[1])
+
 
     bird_group.update()
     ground_group.update()
