@@ -4,6 +4,8 @@ import Config
 import Bird
 from Ground import Ground
 from utils.offscreen import is_off_screen
+from Pipe import Pipe
+from utils.GeneratePipes import get_random_pipes
 
 
 pygame.init()
@@ -20,6 +22,12 @@ ground_group = pygame.sprite.Group()
 for i in range(2):
     ground_instance = Ground(Config.GROUND_WIDTH * i)
     ground_group.add(ground_instance)
+
+pipe_group = pygame.sprite.Group()
+for i in range(2):
+    pipes = get_random_pipes(Config.SCREEN_WIDTH * i + 600)
+    pipe_group.add(pipes[0])
+    pipe_group.add(pipes[1])
 
 clock = pygame.time.Clock()
 
@@ -47,9 +55,16 @@ while True:
 
     bird_group.update()
     ground_group.update()
+    pipe_group.update()
 
     bird_group.draw(screen) #Desenha todos os elementos do grupo na tela
     ground_group.draw(screen)
+    pipe_group.draw(screen)
+
+    #Se os grupos colidirem com os pixeis não transparentes colidirem
+    if pygame.sprite.groupcollide(bird_group, ground_group, False, False, pygame.sprite.collide_mask):
+        #Game Ovr
+        break
 
     #Depois de cada laço ele atualiza pra mudar oq precisa ser mudado
     pygame.display.update()

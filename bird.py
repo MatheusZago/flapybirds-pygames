@@ -22,7 +22,8 @@ class Bird(pygame.sprite.Sprite):
         self.image = pygame.image.load(Config.BIRD_UP_IMAGE).convert_alpha() #isso é proa qnd tiver a transparencia (partes png)
         self.rect = self.image.get_rect() #diz onde está, tamanho e 
         
-        #Colocando o passaro na metade da tela
+        self.mask = pygame.mask.from_surface(self.image) #Criando a máscara para pegar só os pixels não transparentes
+       
         self.rect.x = Config.SCREEN_WIDTH/2
         self.rect.y = Config.SCREEN_HEIGHT/2
 
